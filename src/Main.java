@@ -20,20 +20,29 @@ public class Main {
             int columns = scanner.nextInt();
 
             ms.createMineSweeper(rows,columns);
+            ms.printArray(ms.mineSweeperMap);
+
 
             while (true){
-                System.out.print("Enter the value of  x coordinate: ");
-                row = scanner.nextInt();
+                if(ms.isGameContinue(rows,columns)){
+                    System.out.print("Enter the value of  x coordinate: ");
+                    row = scanner.nextInt();
 
-                System.out.print("Enter the value of  y coordinate: ");
-                column = scanner.nextInt();
-
-
-                if (!(ms.checkMine(row, column))){
-                    ms.countTheMine(row,column);
+                    System.out.print("Enter the value of  y coordinate: ");
+                    column = scanner.nextInt();
+                    if (!(ms.checkMine(row, column))){
+                        ms.gameStep(row,column);
+                        ms.countTheMine(row,column);
+                        ms.printArray(ms.mineSweeperMap);
+                    } else{
+                        System.out.println("Game Over :[ ");
+                        ms.printArray(ms.mineMap);
+                        break;
+                    }
                 } else{
-                    System.out.println("Game Over :[ ");
-                    ms.printArray(ms.mineMap);
+                        System.out.println("Congratulations You Won The Game :] ");
+                        ms.printArray(ms.mineMap);
+                        break;
                 }
             }
 

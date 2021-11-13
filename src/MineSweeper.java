@@ -4,7 +4,7 @@ public class MineSweeper {
     static String[][] mineSweeperMap;
     static String[][] mineMap;
     static int totalMine;
-    static int gameStep = 0;
+    static int countGameStep = 0;
 
     public static void createMineSweeper(int rows, int columns){
         Random rand = new Random();
@@ -22,11 +22,10 @@ public class MineSweeper {
             }
         }
 
-
         int i = 0;
         while (i < totalMine){
-            int randomRow = rand.nextInt(totalMine + 1);
-            int randomColumn = rand.nextInt(totalMine + 1);
+            int randomRow = rand.nextInt(rows);
+            int randomColumn = rand.nextInt(columns);
 
             if (!("*".equals(mineMap[randomRow][randomColumn]))){
                 mineMap[randomRow][randomColumn] = "*";
@@ -35,10 +34,7 @@ public class MineSweeper {
 
         }
 
-        printArray(mineSweeperMap);
         printArray(mineMap);
-        System.out.println( mineMap[0].length);
-        System.out.println( mineMap[1].length);
     }
 
     public static void printArray(String[][] arr){
@@ -89,10 +85,18 @@ public class MineSweeper {
             }
         }
 
-        gameStep++;
         mineSweeperMap[row][column] = String.valueOf(sum);
+    }
 
-        printArray(mineSweeperMap);
+    public static void  gameStep(int row, int column){
+        if (("-".equals(mineSweeperMap[row][column]))){
+            countGameStep++;
+        }
+    }
+
+
+    public static boolean   isGameContinue(int rows, int columns){
+        return countGameStep < (rows * columns) - totalMine;
     }
 
 }
