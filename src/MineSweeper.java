@@ -14,9 +14,8 @@ public class MineSweeper {
 
         totalMine =  (rows * columns) / 4;
 
-
-        for (int i = 0; i < mineSweeperMap[0].length; i++) {
-            for (int j = 0; j < mineSweeperMap[1].length; j++) {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
                 mineSweeperMap[i][j] = "-";
                 mineMap[i][j] = "-";
             }
@@ -33,13 +32,11 @@ public class MineSweeper {
             }
 
         }
-
-        printArray(mineMap);
     }
 
     public static void printArray(String[][] arr){
 
-        for (int i = 0; i < arr[0].length; i++) {
+        for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[1].length; j++) {
                 System.out.print(arr[i][j]+"\t");
             }
